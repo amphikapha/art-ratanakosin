@@ -1,32 +1,32 @@
-import { Building2, Calendar, MapPin, Crown } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
+import { Building2, Calendar, MapPin, Crown } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const overviewItems = [
   {
     icon: Building2,
-    title: 'ประเภทวัด',
-    description: 'พระอารามหลวงชั้นโท',
-    detail: 'ชนิดราชวรมหาวิหาร',
+    title: "ประเภทวัด",
+    description: "พระอารามหลวงชั้นโท",
+    detail: "ชนิดราชวรมหาวิหาร",
   },
   {
     icon: Calendar,
-    title: 'ยุคสมัย',
-    description: 'สมัยอยุธยา',
-    detail: 'บูรณะในสมัยรัตนโกสินทร์',
+    title: "ยุคสมัย",
+    description: "สมัยอยุธยา",
+    detail: "บูรณะในสมัยรัตนโกสินทร์",
   },
   {
     icon: MapPin,
-    title: 'ที่ตั้ง',
-    description: 'เขตป้อมปราบศัตรูพ่าย',
-    detail: 'กรุงเทพมหานคร',
+    title: "ที่ตั้ง",
+    description: "เขตป้อมปราบศัตรูพ่าย",
+    detail: "กรุงเทพมหานคร",
   },
   {
     icon: Crown,
-    title: 'สถานะ',
-    description: 'พระอารามหลวง',
-    detail: 'ในพระบรมราชูปถัมภ์',
+    title: "สถานะ",
+    description: "พระอารามหลวง",
+    detail: "ในพระบรมราชูปถัมภ์",
   },
-]
+];
 
 export function OverviewSection() {
   return (
@@ -38,13 +38,15 @@ export function OverviewSection() {
             ข้อมูลพื้นฐาน
           </h2>
           <p className="text-brown max-w-2xl mx-auto leading-relaxed text-pretty">
-            วัดสระเกศราชวรมหาวิหาร เป็นพระอารามหลวงชั้นโทที่มีความสำคัญทางประวัติศาสตร์
-            ตั้งอยู่ใจกลางกรุงเทพมหานคร มีชื่อเสียงจากภูเขาทองที่สวยงามและเป็นสัญลักษณ์ของเมือง
+            วัดสระเกศราชวรมหาวิหาร
+            เป็นพระอารามหลวงชั้นโทที่มีความสำคัญทางประวัติศาสตร์
+            ตั้งอยู่ใจกลางกรุงเทพมหานคร
+            มีชื่อเสียงจากภูเขาทองที่สวยงามและเป็นสัญลักษณ์ของเมือง
           </p>
         </div>
 
         {/* Overview Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
           {overviewItems.map((item, index) => (
             <Card
               key={index}
@@ -57,13 +59,34 @@ export function OverviewSection() {
                 <h3 className="font-serif text-lg font-semibold text-deep-red mb-2">
                   {item.title}
                 </h3>
-                <p className="text-brown-dark font-medium">{item.description}</p>
+                <p className="text-brown-dark font-medium">
+                  {item.description}
+                </p>
                 <p className="text-brown text-sm mt-1">{item.detail}</p>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* YouTube Video */}
+        <div className="max-w-4xl mx-auto">
+          <div className="rounded-lg overflow-hidden shadow-xl border border-gold/20">
+            <div
+              className="relative w-full"
+              style={{ paddingBottom: "56.25%", height: 0 }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/Y0HAy1JOUc8?autoplay=1&controls=1&rel=0&mute=1"
+                className="absolute top-0 left-0 w-full h-full"
+                style={{ border: "none" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="วัดสระเกศราชวรมหาวิหาร"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  )
+  );
 }

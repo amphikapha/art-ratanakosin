@@ -1,35 +1,47 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Facebook, Youtube, Instagram, Mail, Globe } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { useState } from "react";
+import { Facebook, Youtube, Instagram, Mail, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 const quickLinks = [
-  { label: 'หน้าแรก', href: '#hero' },
-  { label: 'ข้อมูลพื้นฐาน', href: '#overview' },
-  { label: 'ความเป็นมา', href: '#history' },
-  { label: 'สิ่งศักดิ์สิทธิ์สำคัญ', href: '#sacred-things' },
-  { label: 'พิธีกรรม', href: '#rituals' },
-  { label: 'ติดต่อ', href: '#contact' },
-]
+  { label: "หน้าแรก", href: "#hero" },
+  { label: "ข้อมูลพื้นฐาน", href: "#overview" },
+  { label: "ความเป็นมา", href: "#history" },
+  { label: "สิ่งศักดิ์สิทธิ์สำคัญ", href: "#sacred-things" },
+  { label: "พิธีกรรม", href: "#rituals" },
+  { label: "ติดต่อ", href: "#contact" },
+];
 
 const socialLinks = [
-  { icon: Globe, href: 'https://www.watsrakesa.net/', label: 'Website' },
-  { icon: Facebook, href: 'https://www.facebook.com/watsraket/', label: 'Facebook' },
-  { icon: Youtube, href: 'https://www.youtube.com/@jariyatamchannel', label: 'YouTube' },
-  { icon: Instagram, href: 'https://www.instagram.com/watsraket344/ ', label: 'Instagram' },
-]
+  { icon: Globe, href: "https://www.watsrakesa.net/", label: "Website" },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/watsraket/",
+    label: "Facebook",
+  },
+  {
+    icon: Youtube,
+    href: "https://www.youtube.com/@jariyatamchannel",
+    label: "YouTube",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/watsraket344/ ",
+    label: "Instagram",
+  },
+];
 
 export function Footer() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle newsletter signup
-    alert(`ขอบคุณที่สมัครรับข่าวสาร: ${email}`)
-    setEmail('')
-  }
+    alert(`ขอบคุณที่สมัครรับข่าวสาร: ${email}`);
+    setEmail("");
+  };
 
   return (
     <footer className="bg-maroon text-cream">
@@ -85,16 +97,7 @@ export function Footer() {
             </h4>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between text-cream/80">
-                <span>วัด</span>
-                <span>08.00 - 17.00 น.</span>
-              </div>
-              <div className="flex justify-between text-cream/80">
-                <span>ภูเขาทอง</span>
                 <span>07.30 - 19.00 น.</span>
-              </div>
-              <div className="flex justify-between text-cream/80">
-                <span>พิพิธภัณฑ์</span>
-                <span>09.00 - 16.00 น.</span>
               </div>
               <div className="mt-4 pt-4 border-t border-cream/20">
                 <p className="text-gold text-xs">เปิดให้เข้าชมทุกวัน</p>
@@ -151,19 +154,16 @@ export function Footer() {
       <div className="border-t border-cream/10">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-cream/60">
-            <p>© {new Date().getFullYear()} วัดสระเกศราชวรมหาวิหาร สงวนลิขสิทธิ์</p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="hover:text-gold transition-colors">
-                นโยบายความเป็นส่วนตัว
-              </a>
-              <span>|</span>
-              <a href="#" className="hover:text-gold transition-colors">
-                ข้อกำหนดการใช้งาน
-              </a>
-            </div>
+            <p>
+              © {new Date().getFullYear()} วัดสระเกศราชวรมหาวิหาร สงวนลิขสิทธิ์
+            </p>
+            <p>
+              เว็บไซต์นี้ถูกสร้างขึ้นโดยเป็นส่วนหนึ่งของวิชา Art Ratanakosin
+              0295129 (2025/2)
+            </p>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

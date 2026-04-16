@@ -42,7 +42,6 @@ export function HistorySection() {
             ประวัติศาสตร์อันยาวนานของวัดสระเกศ ตั้งแต่สมัยอยุธยาจนถึงปัจจุบัน
           </p>
         </div>
-
         {/* Two Column Layout */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Image */}
@@ -79,7 +78,6 @@ export function HistorySection() {
             </div>
           </div>
         </div>
-
         {/* Timeline */}
         <div className="relative">
           <h3 className="font-serif text-2xl font-semibold text-deep-red text-center mb-12">
@@ -119,6 +117,67 @@ export function HistorySection() {
             ))}
           </div>
         </div>
+        {/* Legends Section */}
+        <div className="mt-24">
+          <h3 className="font-serif text-2xl font-semibold text-deep-red text-center mb-12">
+            ตำนานแร้งวัดสระเกศและเปรตวัดสุทัศน์
+          </h3>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            {/* Left Side - Stories */}
+            <div className="space-y-8">
+              {/* Story 1 - Demons of Wat Saket */}
+              <div className="bg-card border border-gold/20 rounded-lg p-6 hover:border-gold/50 transition-all">
+                <h4 className="font-serif text-lg font-semibold text-deep-red mb-3">
+                  แร้งวัดสระเกศ
+                </h4>
+                <p className="text-brown text-sm leading-relaxed text-pretty mb-3">
+                  ตำนานที่เกิดขึ้นจริง ไม่ใช่เพียงเรื่องเล่า ในช่วงรัชกาลที่ 2
+                  เมื่ออหิวาตกโรคระบาดเมืองมีคนตายหลายหมื่นคนในเพียงไม่กี่วัน
+                  เมืองกลายเป็นแหล่งศพ ทุกตารางนิ้วเต็มไปด้วยซากศพ
+                  วัดสระเกศกลายมาเป็นศูนย์รวมของแร้งนับพัน
+                  เนื่องจากมีกฎห้ามเผาศพในเมือง และประตูผี
+                  (ประตูเมืองเพียงประตูเดียว) อยู่ใกล้วัดสระเกศมากที่สุด
+                  ทำให้ทางการนำศพมากองรวมกันที่นี่ และใช้แร้งกำจัดศพแทนการเผา
+                  เป็นจุดศูนย์รวมที่คนทั้งมูลนิธิเรียกกันว่า "นรกจำลอง"
+                </p>
+              </div>
+
+              {/* Story 2 - Ghost of Wat Suthat */}
+              <div className="bg-card border border-gold/20 rounded-lg p-6 hover:border-gold/50 transition-all">
+                <h4 className="font-serif text-lg font-semibold text-deep-red mb-3">
+                  เปรตวัดสุทัศน์
+                </h4>
+                <p className="text-brown text-sm leading-relaxed text-pretty mb-3">
+                  เปรต คือ มนุษย์ที่ทำบาปกรรมขั้นสุด เมื่อตายจะเกิดมาชดใช้กรรม
+                  ปากเท่ารูเข็ม มือใหญ่เท่าใบลาน มักปรากฏตัวตอนกลางคืน
+                  ในสมัยต้นกรุงรัตนโกสินทร์ บริเวณวัดสุทัศน์น่ากลัวมากๆ
+                  คนมักเล่าว่าพบเห็นเปรตอยู่เสมอ
+                </p>
+                <p className="text-brown text-sm leading-relaxed text-pretty">
+                  แท้ที่จริงแล้ว เรื่องเล่าเปรตมาจากภาพวาดบนฝาผนังในอุโบสถ
+                  ที่ปรากว่าเปรตตนหนึ่งนอนพาดกายอยู่ และมีพระสงฆ์ยืนพิจารณา
+                  ภาพนี้เป็นที่เลื่องลือในอดีต
+                  แต่ผู้คนบอกว่าสิ่งที่เห็นว่าเปรตนั้น
+                  แท้จริงคือเงาของเสาชิงช้าหน้าวัดในสายหมอกยามเช้า
+                  อันนี้ก็แล้วแต่ความเชื่อส่วนบุคคล
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="flex items-center justify-center">
+              <div className="relative">
+                <div className="absolute -inset-4 bg-gold/20 rounded-lg transform rotate-2" />
+                <img
+                  src="/images/griffon.png"
+                  alt="เรื่องเล่าชาวเกาะ"
+                  className="relative rounded-lg shadow-xl w-full h-80 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>{" "}
       </div>
     </section>
   );
