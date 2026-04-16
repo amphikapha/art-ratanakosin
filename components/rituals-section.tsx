@@ -1,46 +1,49 @@
-import { Calendar, Moon, Sun, Sunrise, BookOpen, Heart } from 'lucide-react'
+import { Calendar, Moon, Sun, Sunrise, BookOpen, Heart } from "lucide-react";
 
 const annualFestivals = [
   {
     icon: Calendar,
-    title: 'งานนมัสการองค์พระบรมสารีริกธาตุ',
-    description: 'งานประจำปีเดือนพฤศจิกายน ตรงกับวันลอยกระทง มีผู้คนมาสักการะนับแสนคน',
-    month: 'พฤศจิกายน',
+    title: "งานนมัสการองค์พระบรมสารีริกธาตุ",
+    description:
+      "งานประจำปีเดือนพฤศจิกายน ตรงกับวันลอยกระทง มีผู้คนมาสักการะมากมาย",
+    month: "พฤศจิกายน",
   },
   {
     icon: Moon,
-    title: 'วันวิสาขบูชา',
-    description: 'วันสำคัญทางพระพุทธศาสนา ระลึกถึงการประสูติ ตรัสรู้ และปรินิพพาน',
-    month: 'พฤษภาคม',
+    title: "วันวิสาขบูชา",
+    description:
+      "วันสำคัญทางพระพุทธศาสนา ระลึกถึงการประสูติ ตรัสรู้ และปรินิพพาน",
+    month: "พฤษภาคม",
   },
   {
     icon: Sun,
-    title: 'วันมาฆบูชา',
-    description: 'วันที่พระสงฆ์ 1,250 รูปมาประชุมโดยมิได้นัดหมาย รับฟังโอวาทปาฏิโมกข์',
-    month: 'กุมภาพันธ์',
+    title: "วันมาฆบูชา",
+    description:
+      "วันที่พระสงฆ์ 1,250 รูปมาประชุมโดยมิได้นัดหมาย รับฟังโอวาทปาฏิโมกข์",
+    month: "กุมภาพันธ์",
   },
-]
+];
 
 const regularPractices = [
   {
     icon: Sunrise,
-    title: 'ตักบาตรเช้า',
-    description: 'ใส่บาตรพระสงฆ์ในตอนเช้า สร้างบุญกุศลตามประเพณีชาวพุทธ',
-    time: 'ทุกวัน 06.30 น.',
+    title: "ตักบาตรเช้า",
+    description: "ใส่บาตรพระสงฆ์ในตอนเช้า สร้างบุญกุศลตามประเพณีชาวพุทธ",
+    time: "ทุกวัน 06.30 น.",
   },
   {
     icon: BookOpen,
-    title: 'สวดมนต์',
-    description: 'ร่วมสวดมนต์ทำวัตรเย็นกับพระสงฆ์ น้อมจิตให้สงบ',
-    time: 'ทุกวัน 18.00 น.',
+    title: "สวดมนต์",
+    description: "ร่วมสวดมนต์ทำวัตรเย็นกับพระสงฆ์ น้อมจิตให้สงบ",
+    time: "ทุกวัน 18.00 น.",
   },
   {
     icon: Heart,
-    title: 'นั่งสมาธิ',
-    description: 'ปฏิบัติสมาธิภาวนา ฝึกจิตให้ตั้งมั่นและสงบ',
-    time: 'วันพระ 09.00 น.',
+    title: "นั่งสมาธิ",
+    description: "ปฏิบัติสมาธิภาวนา ฝึกจิตให้ตั้งมั่นและสงบ",
+    time: "วันพระ 09.00 น.",
   },
-]
+];
 
 export function RitualsSection() {
   return (
@@ -119,5 +122,5 @@ export function RitualsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
