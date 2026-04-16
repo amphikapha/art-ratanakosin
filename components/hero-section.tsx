@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -12,7 +12,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1563492065599-3520f775eeed?q=80&w=2074&auto=format&fit=crop')`,
+          backgroundImage: `url('/images/hero-image.png')`,
         }}
       />
 
@@ -44,7 +44,8 @@ export function HeroSection() {
           พระอารามหลวงชั้นโท ชนิดราชวรมหาวิหาร
         </p>
         <p className="text-cream/80 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed text-pretty">
-          สถานที่ศักดิ์สิทธิ์แห่งศรัทธา ภูเขาทองอันงดงาม ตั้งตระหง่านใจกลางกรุงเทพมหานคร
+          สถานที่ศักดิ์สิทธิ์แห่งศรัทธา ภูเขาทองอันงดงาม
+          ตั้งตระหง่านใจกลางกรุงเทพมหานคร
         </p>
 
         {/* Decorative Bottom Element */}
@@ -69,5 +70,5 @@ export function HeroSection() {
       {/* Bottom Gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
-  )
+  );
 }
