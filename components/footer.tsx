@@ -11,6 +11,7 @@ const quickLinks = [
   { label: "ความเป็นมา", href: "#history" },
   { label: "สิ่งศักดิ์สิทธิ์สำคัญ", href: "#sacred-things" },
   { label: "พิธีกรรม", href: "#rituals" },
+  { label: "วิดีโอแนะนำ", href: "#media-vlog" },
   { label: "ติดต่อ", href: "#contact" },
 ];
 

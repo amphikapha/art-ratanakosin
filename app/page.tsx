@@ -1,13 +1,14 @@
-import { Navigation } from '@/components/navigation'
-import { HeroSection } from '@/components/hero-section'
-import { ThaiDivider } from '@/components/thai-divider'
-import { OverviewSection } from '@/components/overview-section'
-import { HistorySection } from '@/components/history-section'
-import { ArchitectureSection } from '@/components/architecture-section'
-import { RitualsSection } from '@/components/rituals-section'
-import { ContactSection } from '@/components/contact-section'
-import { Footer } from '@/components/footer'
-import { BackToTop } from '@/components/back-to-top'
+import { Navigation } from "@/components/navigation";
+import { HeroSection } from "@/components/hero-section";
+import { ThaiDivider } from "@/components/thai-divider";
+import { OverviewSection } from "@/components/overview-section";
+import { HistorySection } from "@/components/history-section";
+import { ArchitectureSection } from "@/components/architecture-section";
+import { RitualsSection } from "@/components/rituals-section";
+import { MediaSection } from "@/components/media-section";
+import { ContactSection } from "@/components/contact-section";
+import { Footer } from "@/components/footer";
+import { BackToTop } from "@/components/back-to-top";
 
 export default function WatSaketPage() {
   return (
@@ -42,6 +43,12 @@ export default function WatSaketPage() {
       {/* Thai Decorative Divider */}
       <ThaiDivider className="bg-cream-dark" />
 
+      {/* Media Section */}
+      <MediaSection />
+
+      {/* Thai Decorative Divider */}
+      <ThaiDivider />
+
       {/* Contact & Directions Section */}
       <ContactSection />
 
@@ -51,5 +58,5 @@ export default function WatSaketPage() {
       {/* Back to Top Button */}
       <BackToTop />
     </main>
-  )
+  );
 }

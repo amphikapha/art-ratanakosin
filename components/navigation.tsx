@@ -5,11 +5,11 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navLinks = [
-  { href: "#hero", label: "หน้าแรก" },
   { href: "#overview", label: "ข้อมูลพื้นฐาน" },
   { href: "#history", label: "ความเป็นมา" },
   { href: "#sacred-things", label: "สิ่งศักดิ์สิทธิ์สำคัญ" },
   { href: "#rituals", label: "พิธีกรรม" },
+  { href: "#media-vlog", label: "วิดีโอแนะนำ" },
   { href: "#contact", label: "ติดต่อ" },
 ];
 
@@ -92,7 +92,7 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-gold/20">
+          <div className="lg:hidden mt-4 pb-4 bg-cream/95 backdrop-blur-sm border-t border-gold/20">
             <div className="flex flex-col gap-2 pt-4">
               {navLinks.map((link) => (
                 <a
