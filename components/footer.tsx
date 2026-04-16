@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Facebook, Youtube, Instagram, Mail } from 'lucide-react'
+import { Facebook, Youtube, Instagram, Mail, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -9,15 +9,16 @@ const quickLinks = [
   { label: 'หน้าแรก', href: '#hero' },
   { label: 'ข้อมูลพื้นฐาน', href: '#overview' },
   { label: 'ความเป็นมา', href: '#history' },
-  { label: 'สถาปัตยกรรม', href: '#architecture' },
+  { label: 'สิ่งศักดิ์สิทธิ์สำคัญ', href: '#sacred-things' },
   { label: 'พิธีกรรม', href: '#rituals' },
   { label: 'ติดต่อ', href: '#contact' },
 ]
 
 const socialLinks = [
-  { icon: Facebook, href: '#', label: 'Facebook' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
-  { icon: Instagram, href: '#', label: 'Instagram' },
+  { icon: Globe, href: 'https://www.watsrakesa.net/', label: 'Website' },
+  { icon: Facebook, href: 'https://www.facebook.com/watsraket/', label: 'Facebook' },
+  { icon: Youtube, href: 'https://www.youtube.com/@jariyatamchannel', label: 'YouTube' },
+  { icon: Instagram, href: 'https://www.instagram.com/watsraket344/ ', label: 'Instagram' },
 ]
 
 export function Footer() {

@@ -8,7 +8,7 @@ const navLinks = [
   { href: '#hero', label: 'หน้าแรก' },
   { href: '#overview', label: 'ข้อมูลพื้นฐาน' },
   { href: '#history', label: 'ความเป็นมา' },
-  { href: '#architecture', label: 'สถาปัตยกรรม' },
+  { href: '#sacred-things', label: 'สิ่งศักดิ์สิทธิ์สำคัญ' },
   { href: '#rituals', label: 'พิธีกรรม' },
   { href: '#contact', label: 'ติดต่อ' },
 ]
@@ -31,11 +31,10 @@ export function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
           ? 'bg-cream/95 backdrop-blur-sm shadow-lg'
           : 'bg-transparent'
-      }`}
+        }`}
     >
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -62,11 +61,10 @@ export function Navigation() {
               <a
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                  isScrolled
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${isScrolled
                     ? 'text-brown-dark hover:text-deep-red hover:bg-gold/10'
                     : 'text-cream hover:text-gold'
-                }`}
+                  }`}
               >
                 {link.label}
               </a>

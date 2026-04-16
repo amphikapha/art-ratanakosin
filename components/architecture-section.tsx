@@ -1,121 +1,219 @@
-import { Landmark, Building, Home, Spline } from 'lucide-react'
+'use client'
+
+import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from '@/components/ui/dialog'
+import { X } from 'lucide-react'
 
-const architectureFeatures = [
+const sacredItems = [
   {
-    icon: Landmark,
-    title: 'ภูเขาทอง',
-    englishTitle: 'Golden Mount',
-    description: 'เนินดินสูงประมาณ 77 เมตร มีบันไดวนขึ้นถึงยอด 344 ขั้น ยอดเขาประดิษฐานพระเจดีย์ทองคำบรรจุพระบรมสารีริกธาตุ',
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?q=80&w=2070&auto=format&fit=crop',
+    number: 1,
+    title: 'พระวิหาร',
+    shortDescription: 'สวยงามสูงเด่นเป็นสง่า มีหลังคามุงด้วยกระเบื้องเคลือบ มีช่อฟ้า ใบระกา เป็นที่ประดิษฐานพระพุทธรูปที่สำคัญ',
+    fullDescription:
+      'สวยงามสูงเด่นเป็นสง่า มีหลังคามุงด้วยกระเบื้องเคลือบ มีช่อฟ้า ใบระกา หน้าบันทั้งสองด้านประดับด้วยกระจกสีวิจิตรงดงาม เป็นที่ประดิษฐานพระพุทธรูปที่สำคัญ ๒ องค์ด้วยกัน คือพระอัฏฐารส และหลวงพ่อดุสิต',
+    image: '/images/sacred/1-phra-viharn.png',
   },
   {
-    icon: Building,
+    number: 2,
     title: 'พระอุโบสถ',
-    englishTitle: 'Ordination Hall',
-    description: 'พระอุโบสถทรงไทยประดับด้วยช่อฟ้า ใบระกา หางหงส์ ภายในประดิษฐานพระพุทธรูปปางมารวิชัย',
-    image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2039&auto=format&fit=crop',
+    shortDescription: 'เป็นสถานที่ประดิษฐานพระปางสมาธิ ซึ่งเป็นพระปั้นปิดทองปางสมาธิที่ใหญ่โตองค์หนึ่งในกรุงเทพมหานคร',
+    fullDescription:
+      'เป็นสถานที่ประดิษฐานพระปางสมาธิ ซึ่งเป็นพระปั้นปิดทองปางสมาธิที่ใหญ่โต พร้อมด้วยความสมพุทธลักษณองค์หนึ่งในกรุงเทพมหานคร ที่ฝาผนังด้านใน ระหว่างซุ้มหน้าต่างเป็นภาพทศชาติส่วนด้านบนเป็นภาพเทวดาและท้าวจตุโลกบาล ส่วนด้านหน้าเป็นภาพมารวิชัย ส่วนด้านหลังพระประธานเป็นภาพไตรภูมิคือ ภาพสวรรค์ มนุษย์ และนรก',
+    image: '/images/sacred/2-phra-ubosot.jpg',
   },
   {
-    icon: Home,
-    title: 'วิหาร',
-    englishTitle: 'Assembly Hall',
-    description: 'วิหารขนาดใหญ่สำหรับประกอบศาสนกิจ มีจิตรกรรมฝาผนังอันงดงามเล่าเรื่องพุทธประวัติ',
-    image: 'https://images.unsplash.com/photo-1600093112978-b84e5eb6a98d?q=80&w=2070&auto=format&fit=crop',
+    number: 3,
+    title: 'พระวิหารหลวงพ่อดำ',
+    shortDescription: 'พระปิดทองปางมารวิชัย หน้าตักกว้าง ๔ ศอก สันนิษฐานว่าเป็นฝีมือปั้นยุคต้นกรุงรัตนโกสินทร์',
+    fullDescription:
+      'องค์นี้เป็นพระปิดทองปางมารวิชัย หน้าตักกว้าง ๔ ศอก สันนิษฐานว่าเป็นฝีมือปั้นยุคต้นกรุงรัตนโกสินทร์ เป็นพระพุทธรูปที่คู่กับบรมบรรพต(ภูเขาทอง) มาตั้งแต่ต้น เล่ากันว่าสร้างไว้เพื่อให้เจ้านายและพุทธบริษัททั่วไป ที่ไม่สามารถขึ้นไปบูชาองค์พระบรมบรรพตได้บูชาที่พระพุทธรูปองค์นี้',
+    image: '/images/sacred/3-luang-por-dam.jpg',
   },
   {
-    icon: Spline,
-    title: 'เจดีย์',
-    englishTitle: 'Pagoda',
-    description: 'เจดีย์ทรงระฆังสีทองอร่าม ประดับด้วยกระเบื้องสีทองตามศิลปะไทยประเพณี',
-    image: 'https://images.unsplash.com/photo-1512553617565-75b967a7f401?q=80&w=2073&auto=format&fit=crop',
-  },
-]
-
-const uniqueFeatures = [
-  {
-    title: 'สถาปัตยกรรมไทยประเพณี',
-    description: 'อาคารทุกหลังสร้างตามแบบศิลปะไทยโบราณ มีหลังคาทรงจั่วซ้อนชั้น ประดับด้วยช่อฟ้า ใบระกา หางหงส์',
+    number: 4,
+    title: 'หอไตร',
+    shortDescription: 'หอพระไตรปิฎก เป็นที่เก็บคัมภีร์พระพุทธศาสนา เป็นหอสมุดประจำวัด ตั้งอยู่ด้านทิศใต้ของพระบรมบรรพต',
+    fullDescription:
+      'เรียกเต็มว่า "หอพระไตรปิฎก" ซึ่งเป็นที่เก็บคัมภีร์พระพุทธศาสนา นับตั้งแต่พระไตรปิฎกอรรถกถา ฎีกา และสัททาวิเศษ ตลอดจนอุปกรณ์ ต่าง ๆ รวมเรียกว่า "พระธรรม" เป็นหอสมุดประจำวัด ตั้งอยู่ที่คณะ ๑๐ ด้านทิศใต้ของพระบรมบรรพตภูเขาทอง พระบาทสมเด็จพระพุทธยอดฟ้าจุฬาโลก รัชกาลที่ ๑ ทรงโปรดให้สร้างขึ้น และพระบาทสมเด็จพระนั่งเกล้าเจ้าอยู่หัว รัชกาลที่ ๓ ทรงโปรดให้ทำการบูรณะ',
+    image: '/images/sacred/4-hor-trai.jpg',
   },
   {
-    title: 'สัญลักษณ์แห่งพระพุทธศาสนา',
-    description: 'ภูเขาทองเป็นสัญลักษณ์ของเขาพระสุเมรุ ศูนย์กลางจักรวาลตามคติพุทธศาสนา',
+    number: 5,
+    title: 'พระวิหารหลวงพ่อโต',
+    shortDescription: 'พระพุทธรูปหล่อปิดทองในสมัยรัชกาลที่ ๓ หน้าตักกว้าง ๗ ศอก ๑ คืบ เป็นพระพุทธรูปหล่อด้วยโลหะที่ใหญ่',
+    fullDescription:
+      'พระพุทธรูปมารวิชัยองค์นี้ เป็นพระพุทธรูปหล่อปิดทองในสมัยรัชกาลที่ ๓ หน้าตักกว้าง ๗ ศอก ๑ คืบ ส่วนสูง ๑๐ ศอก นับว่าเป็นพระพุทธรูปหล่อด้วยโลหะที่ใหญ่องค์หนึ่ง ชาวบ้านจึงเรียกว่า "หลวงพ่อโต" ซึ่งประดิษฐานอยู่เชิงพระบรมบรรพต (ภูเขาทอง) ด้านทิศเหนือ ตามประวัติได้บันทึกเอาไว้ว่า พระบาทสมเด็จพระนั่งเกล้าเจ้าอยู่หัว รัชกาลที่ ๓ ได้มีพระราชศรัทธาให้สร้างหลวงพ่อโตไว้ ต่อมาพระบาทสมเด็จพระจุลจอมเกล้าเจ้าอยู่หัว รัชกาลที่ ๕ ทรงพระกรุณาโปรดเกล้าให้นำมาประดิษฐานไว้ที่วัดสระเกศตั้งแต่บัดนั้นมาจนถึงปัจจุบัน หลวงพ่อโตองค์นี้มีพุทธศาสนิกชนผู้เคารพนับถือเลื่อมใสมาสักการะบูชาเป็นประจำ โดยเฉพาะผู้ที่อยู่บริเวณใกล้เคียงถือว่า "เป็นหลวงพ่อที่ให้ความคุ้มครองให้ความสุขความเจริญ"',
+    image: '/images/sacred/5-luang-por-toh-viharn.jpg',
   },
   {
-    title: 'การผสมผสานศิลปะ',
-    description: 'มีการผสมผสานศิลปะจีนและตะวันตกเข้ากับศิลปะไทย แสดงถึงความเป็นสากลในยุครัตนโกสินทร์',
+    number: 6,
+    title: 'พระประธาน พระอุโบสถ',
+    shortDescription: 'พระพุทธรูปปางสมาธิ ลักษณะใกล้เคียงกับพระพุทธรูปในสมัยอยุธยา สืบต่อมาจากสมัยก่อน',
+    fullDescription:
+      'ลักษณะของพระพุทธรูปประธานเป็นพระพุทธรูปปางสมาธิซึ่งไม่ค่อยพบมากนักในงานช่างไทย ลักษณะโดยรวมแล้วใกล้เคียงกับพระพุทธรูปในสมัยอยุธยา จึงแสดงให้เห็นงานที่สืบต่อมาจากสมัยก่อน ตรงตามประวัติที่กล่าวว่ารัชกาลที่ ๑ โปรดเกล้าฯ ให้สร้างพอกทับพระประธานองค์เดิม ลักษณะดังกล่าวเป็นงานช่างในสมัยนี้ซึ่งต่างจากงานช่างในสมัยรัชกาลที่ ๓ ที่จะมีพระพักตร์อย่างหุ่นอันเป็นลักษณะเฉพาะที่เกิดขึ้นในภายหลัง ลักษณะของพระพุทธรูปประธานมีพระพักตร์ค่อนข้างสี่เหลี่ยมแบบอยุธยา ขมวดพระเกศาเล็ก พระรัศมีเป็นเปลวสูง พระโอษฐ์กว้างแบบอยุธยา',
+    image: '/images/sacred/6-phra-prathan.jpg',
+  },
+  {
+    number: 7,
+    title: 'หลวงพ่อดำ',
+    shortDescription: 'พระปิดทองปางมารวิชัย เป็นพระพุทธรูปที่คู่กับบรมบรรพต(ภูเขาทอง) มาตั้งแต่ต้น',
+    fullDescription:
+      'องค์นี้เป็นพระปิดทองปางมารวิชัย หน้าตักกว้าง ๔ ศอก สันนิษฐานว่าเป็นฝีมือปั้นยุคต้นกรุงรัตนโกสินทร์ เป็นพระพุทธรูปที่คู่กับบรมบรรพต(ภูเขาทอง) มาตั้งแต่ต้น เล่ากันว่าสร้างไว้เพื่อให้เจ้านายและพุทธบริษัททั่วไป ที่ไม่สามารถขึ้นไปบูชาองค์พระบรมบรรพตได้บูชาที่พระพุทธรูปองค์นี้',
+    image: '/images/sacred/7-luang-por-dam-2.jpg',
+  },
+  {
+    number: 8,
+    title: 'พระอัฏฐารส',
+    shortDescription: 'พระพุทธรูปปางห้ามญาติ หล่อปิดทองขนาดใหญ่มาก สูงถึง ๕ วา ๑ ศอก ๑๐ นิ้ว ประดิษฐานอยู่ในพระวิหาร',
+    fullDescription:
+      'มีพระนามเต็มว่า พระอัฏฐารสศรีสุคตทศพลญาณบพิตร เป็นพรพุทธรูปที่มีความสำคัญองค์หนึ่งในกรุงเทพมหานครเป็นพระพุทธรูปปางห้ามญาติ ซึ่งหล่อปิดทองขนาดใหญ่มาก สูงถึง ๕ วา ๑ ศอก ๑๐ นิ้ว (๒๑ ศอก ๑ นิ้ว) ประดิษฐานอยู่ชุกชี ในพระวิหาร ธรรมดาเมืองหลวงแต่ก่อนย่อมมีพระอัฏฐารสเป็นประจำราชธานี พระบาทสมเด็จพระนั่งเกล้าเจ้าอยู่หัว (ร.๓) ทรงโปรดให้อัญเชิญพระอัฏฐารสมาจากวัดวิหารทอง เมืองพิษณุโลก มาประดิษไว้ ณ พระวิหารแห่งนี้\n\nหลวงพ่อดุสิต — พระพุทธรูปปางมารวิชัย พระพุทธรูปศิลป์สกุลช่างรัตนโกสินทร์ พระบาทสมเด็จพระจุลจอมเกล้าเจ้าอยู่หัว ทรงพระกรุณาโปรดเกล้าฯ อัญเชิญมาประดิษฐานในห้องหลังพระอัฏฐารส',
+    image: '/images/sacred/8-phra-attharot.jpg',
+  },
+  {
+    number: 9,
+    title: 'หลวงพ่อโชคดี',
+    shortDescription: 'พระพุทธมงคลสุวรรณบรรพต ปางมารวิชัย พระเกศมีลักษณะเปลวเพลิงหล่อด้วยเงิน บรรจุพระบรมสารีริกธาตุ',
+    fullDescription:
+      'มีพระนามเต็มว่า "พระพุทธมงคลสุวรรณบรรพต" เป็นพระพุทธรูปปางมารวิชัย หรือปางชนะมาร ขนาด ๓๙ นิ้ว มีพุทธลักษณะพุทธศิลป์ มีความโดดเด่น ด้วยพระเกศมีลักษณะเปลวเพลิงหล่อด้วยเงิน บรรจุพระบรมสารีริกธาตุ มีความงดงามด้วยศิลปะสมัยกรุงรัตนโกสินทร์ ถวายพระนามโดย เจ้าประคุณสมเด็จพระพุฒาจารย์ ประธานคณะผู้ปฏิบัติหน้าที่สมเด็จพระสังฆราช ซึ่งนับเป็นพระพุทธรูปองค์สุดท้ายที่เจ้าประคุณสมเด็จฯ เป็นประธานเททองหล่อ\n\nด้านหลังพระประธาน มีจิตรกรรมฝาผนังต้นดอกมณฑาทิพย์ ประตูมณฑาทิพย์โปรยฟ้า ประตูพฤกษาภิรมย์ และพญานาค ๔ ตระกูล\n\nมีคติแห่งการสักการะหลวงพ่อโชคดี ว่า ผู้ใด ได้สักการะบูชา ย่อมประสบสิ่งที่ใจปรารถนาทุกประการ',
+    image: '/images/sacred/9-luang-por-chokdee.jpg',
+  },
+  {
+    number: 10,
+    title: 'หลวงพ่อดวงดี',
+    shortDescription: 'พระพุทธมงคลบรมบรรพต ปางสมาธิ หล่อขึ้นจากแผ่นดวงมหาโภคทรัพย์ที่บรรจุอยู่บนยอดบรมบรรพต',
+    fullDescription:
+      'มีพระนามเต็มว่า "พระพุทธมงคลบรมบรรพต" เป็นพระพุทธรูปปางสมาธิ หรือปางตรัสรู้ มีพุทธลักษณะพุทธศิลป์แห่งพุทธศตวรรษที่ ๒๖ มีความงดงาม โดดเด่น ด้วยศิลปะสมัยกรุงรัตนโกสินทร์ หล่อขึ้นจากแผ่นดวงมหาโภคทรัพย์ที่บรรจุอยู่บนยอดบรมบรรพต ภูเขาทอง\n\nนอกจากนั้น ที่ศาลาหลวงพ่อดวงดี ยังเป็นที่ประดิษฐานปฏิมากรรมและรูปหล่อ ตลอดจนจิตรกรรมฝาผนังเกี่ยวกับประวัติเจ้าประคุณสมเด็จพระพุฒาจารย์ (เกี่ยว อุปเสโณ) และจิตรกรรมฝาผนังไตรภูมิจักรวาล และแสนโกฏิจักรวาล อันวิจิตรงดงาม\n\nมีคติแห่งการสักการะหลวงพ่อดวงดีว่า ผู้ใด ได้สักการะบูชา จะมีดวงชะตาที่ดี เป็นที่รักของมิตรสหาย ปลอดภัยจากอุปสรรคนานาประการ',
+    image: '/images/sacred/10-luang-por-duangdee.jpg',
+  },
+  {
+    number: 11,
+    title: 'หลวงพ่อโต',
+    shortDescription: 'พระพุทธรูปหล่อปิดทองในสมัยรัชกาลที่ ๓ หน้าตักกว้าง ๗ ศอก ๑ คืบ เป็นพระพุทธรูปหล่อด้วยโลหะที่ใหญ่มาก',
+    fullDescription:
+      'พระพุทธรูปองค์นี้เป็นพระพุทธรูปหล่อ ปิดทองในสมัยรัชกาลที่ ๓ หน้าตักกว้าง ๗ ศอก ๑ คืบ สูง ๑๐ ศอก นับว่าเป็นพระพุทธรูปหล่อด้วยโลหะที่ใหญ่มากองค์หนึ่ง พระพุทธรูปที่ใหญ่ขนาดนี้ส่วนมากปั้นด้วยปูน ชาวบ้านเรียกกันว่า "หลวงพ่อโต" คงจะเนื่องจากเป็นพระพุทธรูปใหญ่นั้น',
+    image: '/images/sacred/11-luang-por-toh.jpg',
+  },
+  {
+    number: 12,
+    title: 'ศาลาการเปรียญ',
+    shortDescription: 'สถานที่สำคัญตามประวัติศาสตร์ เป็นที่ที่รัชกาลที่ ๑ เสด็จเข้าโขลนทวาร สรงมุรธาภิเษก ก่อนขึ้นครองราชย์',
+    fullDescription:
+      'ศาลาการเปรียญแห่งนี้ เป็นสถานที่สำคัญตามประวัติศาสตร์ มีตำนานเนื่องในพระราชพงศาวดารว่าเมื่อวันเสาร์ เดือน ๕ แรม ๙ ค่ำ ปีขาล จัตวาศก จุลศักราช ๑๑๔๔ ตรงกับ พุทธศักราช ๒๓๒๕ คราวที่พระบาทสมเด็จพระพุทธยอดฟ้าจุฬาโลกมหาราช (ครั้นดำรงพระยศเป็น สมเด็จพระเจ้าพระยามหากษัตริย์ศึก) เสร็จการศึกสงครามจากเขมร เสร็จเข้าโขลนทวาร ประทับสรงมุรธาภิเษก ก่อนเสร็จขึ้นครองราชย์และสถาปนา "ราชจักรีวงศ์" จากนั้นได้พระราชทานเปลี่ยนชื่อวัดสะแกเดิมเป็น วัดสระเกศ ราชวรมหาวิหาร\n\nครั้นต่อมาในสมัยพระบาทสมเด็จพระนั่งเกล้าเจ้าอยู่หัว รัชกาลที่ ๓ ได้ทรงโปรดเกล้า ฯ ให้สร้างศาลาการเปรียญหลังนี้ขึ้นเพื่อรักษาบ่อน้ำ มุรธาภิเษก อันสำคัญไว้\n\nกราบสักการะ รูปเหมือนเจ้าประคุณสมเด็จพระพุฒาจารย์ (เกี่ยว อุปเสโณ) ประธานคณะผู้ปฏิบัติหน้าที่แทนสมเด็จพระสังฆราช',
+    image: '/images/sacred/12-sala-karn-priang.jpg',
+  },
+  {
+    number: 13,
+    title: 'ต้นพระศรีมหาโพธิ์',
+    shortDescription: 'หน่อพระศรีมหาโพธิ์จากลังกา นำมาปลูกในสมัยรัชกาลที่ ๒ เป็นหน่อจากต้นที่พระพุทธเจ้าตรัสรู้ รุ่นที่ ๓',
+    fullDescription:
+      'ในสมัยกรุงรัตนโกสินทร์นั้น พระบาทสมเด็จพระพุทธเลิศหล้านภาลัย รัชกาลที่ 2 โปรดให้คณะสมณทูตที่พระองค์ทรงส่งไปลังกานำหน่อพระศรีมหาโพธิ์กลับมาด้วย ครั้งนั้นนำกลับมาถึงพระนครปลูกที่วัดมหาธาตุ 1 ต้น วัดสระเกศ 1 ต้น วัดสุทัศนเทพวราราม 1 ต้น หน่อพระศรีมหาโพธิ์ 3 ต้นนี้ เป็นหน่อจากต้นที่พระพุทธเจ้าตรัสรู้ นับเป็นรุ่นที่ ๓',
+    image: '/images/sacred/13-ton-pho.jpg',
   },
 ]
 
 export function ArchitectureSection() {
+  const [selectedItem, setSelectedItem] = useState<(typeof sacredItems)[number] | null>(null)
+
   return (
-    <section id="architecture" className="py-20 bg-background">
+    <section id="sacred-things" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-deep-red mb-4">
-            สถาปัตยกรรม
+            ๑๓ สิ่งศักดิ์สิทธิ์สำคัญ
           </h2>
           <p className="text-brown max-w-2xl mx-auto leading-relaxed text-pretty">
-            ความงดงามของศิลปะและสถาปัตยกรรมไทยที่สะท้อนภูมิปัญญาและความศรัทธา
+            สิ่งศักดิ์สิทธิ์สำคัญภายในวัดสระเกศ ที่ต้องสักการะเมื่อมาไหว้บรมบรรพต ภูเขาทอง
           </p>
         </div>
 
-        {/* Architecture Feature Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-          {architectureFeatures.map((feature, index) => (
+        {/* Sacred Items Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sacredItems.map((item) => (
             <Card
-              key={index}
-              className="group overflow-hidden bg-card border-gold/20 hover:border-gold/50 hover:shadow-xl transition-all duration-300"
+              key={item.number}
+              className="group overflow-hidden bg-card border-gold/20 hover:border-gold/50 hover:shadow-xl transition-all duration-300 cursor-pointer"
+              onClick={() => setSelectedItem(item)}
             >
               <div className="relative h-48 overflow-hidden">
                 <img
-                  src={feature.image}
-                  alt={feature.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brown-dark/80 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center">
-                      <feature.icon className="w-5 h-5 text-brown-dark" />
+                    <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center shrink-0">
+                      <span className="text-brown-dark font-serif font-bold text-sm">
+                        {item.number}
+                      </span>
                     </div>
-                    <div>
-                      <h3 className="font-serif text-xl font-semibold text-cream">
-                        {feature.title}
-                      </h3>
-                      <p className="text-gold text-sm">{feature.englishTitle}</p>
-                    </div>
+                    <h3 className="font-serif text-lg font-semibold text-cream leading-tight">
+                      {item.title}
+                    </h3>
                   </div>
                 </div>
               </div>
-              <CardContent className="p-6">
-                <p className="text-brown leading-relaxed text-pretty">{feature.description}</p>
+              <CardContent className="p-5">
+                <p className="text-brown text-sm leading-relaxed line-clamp-2">
+                  {item.shortDescription}
+                </p>
+                <span className="inline-block mt-3 text-gold text-xs font-medium group-hover:underline">
+                  อ่านเพิ่มเติม →
+                </span>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        {/* Unique Features Subsection */}
-        <div className="bg-cream-dark rounded-2xl p-8 md:p-12">
-          <h3 className="font-serif text-2xl font-semibold text-deep-red text-center mb-8">
-            ความเป็นเอกลักษณ์
-          </h3>
-          <div className="grid md:grid-cols-3 gap-8">
-            {uniqueFeatures.map((feature, index) => (
-              <div key={index} className="text-center">
-                <div className="w-12 h-12 mx-auto mb-4 bg-gold/20 rounded-full flex items-center justify-center">
-                  <span className="text-gold text-2xl font-serif">{index + 1}</span>
-                </div>
-                <h4 className="font-serif text-lg font-semibold text-deep-red mb-3">
-                  {feature.title}
-                </h4>
-                <p className="text-brown text-sm leading-relaxed text-pretty">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Last card (13th) highlight */}
       </div>
+
+      {/* Detail Modal */}
+      <Dialog open={!!selectedItem} onOpenChange={(open) => !open && setSelectedItem(null)}>
+        <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto bg-card border-gold/30">
+          {selectedItem && (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-10 h-10 bg-gold rounded-full flex items-center justify-center shrink-0">
+                    <span className="text-brown-dark font-serif font-bold text-sm">
+                      {selectedItem.number}
+                    </span>
+                  </div>
+                  <DialogTitle className="font-serif text-xl text-deep-red">
+                    {selectedItem.title}
+                  </DialogTitle>
+                </div>
+                <DialogDescription className="sr-only">
+                  รายละเอียดเกี่ยวกับ{selectedItem.title}
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="relative w-full h-64 sm:h-80 rounded-lg overflow-hidden mb-4">
+                <img
+                  src={selectedItem.image}
+                  alt={selectedItem.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div className="text-brown leading-relaxed whitespace-pre-line text-pretty">
+                {selectedItem.fullDescription}
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   )
 }
